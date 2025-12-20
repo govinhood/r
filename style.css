@@ -11,11 +11,13 @@
 
 .light-theme {
     --bg-color: #ffffff;
-    --card-bg: #f8fafc;
+    /* Semi-transparent white for the player card */
+    --card-bg: rgba(255, 255, 255, 0.4); 
     --text-main: #0f172a;
     --text-dim: #64748b;
     --accent: #ef4444;
-    --glass: rgba(0, 0, 0, 0.05);
+    /* More transparent glass for nav and about section */
+    --glass: rgba(0, 0, 0, 0.04); 
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -49,9 +51,9 @@ body {
 }
 
 .bar {
-    flex: 1; /* Distributes width evenly across the full screen */
+    flex: 1;
     margin: 0 2px;
-    height: 2%; /* Default baseline height */
+    height: 2%;
     background: linear-gradient(to top, var(--accent) 0%, #6a11cb 50%, #2575fc 100%);
     border-radius: 50px 50px 0 0;
     transform-origin: bottom;
@@ -62,7 +64,7 @@ body {
 }
 
 /* --- Theme Image Inversion --- */
-.light-theme .logo-img { filter: invert(1) hue-rotate(270deg) brightness(1.1); }
+.light-theme .logo-img { filter: invert(1)  brightness(0.93); }
 
 /* --- Marquee Logic --- */
 .marquee-container { width: 100%; overflow: hidden; white-space: nowrap; position: relative; margin: 10px 0; }
@@ -86,10 +88,12 @@ body {
 .player-side, .details-side { flex: 1; display: flex; justify-content: center; padding: 1rem 2rem; width: 100%; }
 
 .player-card {
-    background: var(--card-bg); backdrop-filter: blur(15px);
+    background: var(--card-bg); 
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     width: 100%; max-width: 360px; padding: 2.5rem 2rem; border-radius: 40px;
     border: 1px solid rgba(255,255,255,0.1); text-align: center; height: fit-content;
-    position: relative; /* Fixed for live-badge positioning */
+    position: relative;
 }
 
 #station-art { width: 100%; max-width: 240px; border-radius: 25px; transition: 0.3s; }
@@ -116,6 +120,8 @@ body {
 .about-card-container { width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 1rem; }
 .about-card { 
     background: var(--glass); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 1.5rem; 
     border-radius: 20px; 
     text-align: left; 
@@ -141,5 +147,5 @@ body {
     .about-card-container { max-width: 100%; }
     .timer { font-size: 2rem; }
     .navbar { padding: 0 15px; }
-    .bar { margin: 0 1px; } /* Thinner gaps for mobile */
-}       
+    .bar { margin: 0 1px; }
+}
