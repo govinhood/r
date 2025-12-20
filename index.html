@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" id="favicon" type="image/png" href="assets/gfmc.png">
+    <title id="tab-title">Govinhood FM</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dark-theme">
+
+<div class="spectrum-container" id="spectrum"></div>
+
+<nav class="navbar">
+    <div class="logo-area">
+       <img src="assets/gfmst.png" alt="Logo" class="nav-icon logo-img">
+    </div>
+    <button id="theme-toggle" class="theme-btn">
+        <i class="fas fa-moon"></i>
+        <span id="theme-text">Dark Mode</span>
+    </button>
+</nav>
+
+<div class="page-wrapper">
+    <main class="main-wrapper">
+        <section class="player-side">
+            <div class="player-card">
+                <div class="image-container">
+                    <img src="assets/gfmlcc.png" alt="Govinhood FM" id="station-art" class="logo-img">
+                    <div class="live-badge"><b>LIVE</b></div>
+                </div>
+                <div class="timer" id="play-time">00:00:00</div>
+                <div class="controls">
+                    <button id="play-pause" class="main-play-btn">
+                        <i class="fas fa-play" id="play-icon"></i>
+                    </button>
+                    <div class="record-wrapper">
+                        <button id="record-btn" class="record-btn" title="Record Stream">
+                            <i class="fas fa-circle"></i>
+                        </button>
+                        <span id="record-timer" class="record-timer-display">00:00</span>
+                    </div>
+                </div>
+                <div class="volume-box">
+                    <i class="fas fa-volume-low"></i>
+                    <input type="range" id="volume" min="0" max="1" step="0.1" value="0.8">
+                    <i class="fas fa-volume-high"></i>
+                </div>
+            </div>
+        </section>
+        
+        <section class="details-side">
+           <div class="about-card-container">
+                <div class="info-content-header">
+                    <p class="tagline">Streaming Now</p>
+                    <h2>Govinhood FM</h2>
+                    <div class="marquee-container">
+                        <p id="now-playing-title" class="current-track-display">
+                            <span id="track-text">Now Playing : Loading...</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="about-card">
+                    <h2><i class="fas fa-circle-info"></i> About Station</h2>
+                    <p class="about-text">Govinhood FM is Nepal’s premier radio destination, streaming non-stop music 24 hours a day to listeners around the world. Our carefully curated playlists blend soulful Nepali Folk, nostalgic 90’s Pop classics, and the latest modern Nepali hits—seamlessly uniting tradition with contemporary sound.
+
+                    <br> More than just a radio station, Govinhood FM is a cultural bridge that connects generations and celebrates the spirit, stories, and emotions of Nepal. Wherever you are, we bring the heartbeat of Nepal straight to your ears—anytime, anywhere.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="logo-area"><img src="assets/gfmst.png" alt="Logo" class="logo-img"></div>
+        <p class="copyright">Copyright &copy; 2025 Govinhood FM. <br> All rights reserved.</p>
+    </footer>
+</div>
+
+<audio id="radio-stream" crossorigin="anonymous" src="https://stream.zeno.fm/uzcb0kbmc2zuv"></audio>
+<a id="download-link" style="display:none"></a>
+<script src="script.js"></script>
+</body>
+</html>
