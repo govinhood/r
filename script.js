@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         spectrumContainer.appendChild(bar);
         bars.push(bar);
     }
-
+    
     // 2. Visualizer
     function initVisualizer() {
         if (audioCtx) return;
@@ -37,7 +37,11 @@ document.addEventListener('DOMContentLoaded', () => {
         source = audioCtx.createMediaElementSource(audio);
         source.connect(analyser);
         analyser.connect(audioCtx.destination);
-        analyser.fftSize = 128; 
+        
+        // Settings for more activity
+        analyser.fftSize = 256; // Increased detail
+        analyser.smoothingTimeConstant = 0.8; // Makes movement fluid
+        
         dataArray = new Uint8Array(analyser.frequencyBinCount);
         draw();
     }
@@ -46,9 +50,22 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(draw);
         if (audio.paused) return;
         analyser.getByteFrequencyData(dataArray);
+
         for (let i = 0; i < bars.length; i++) {
-            const barHeight = (dataArray[i * 2] / 255) * 80; 
-            bars[i].style.height = `${Math.max(barHeight, 1)}%`;
+            // LOGARITHMIC MAPPING: 
+            // Instead of i*2, we use a formula that pulls more data from the 
+            // active low/mid range and spreads it across the 30 bars.
+            const index = Math.floor(Math.pow(i / barCount, 1.5) * (dataArray.length * 0.8));
+            let val = dataArray[index];
+
+            // Boost higher frequencies slightly so the right side isn't flat
+            if (i > barCount / 2) {
+                val = val * (1 + (i / barCount) * 0.5); 
+            }
+
+            const barHeight = (val / 255) * 85; 
+            // Maintain a 2% minimum height so bars don't disappear
+            bars[i].style.height = `${Math.max(barHeight, 2)}%`;
         }
     }
 
