@@ -64,8 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const barHeight = (val / 255) * 85; 
-            // Maintain a 2% minimum height so bars don't disappear
-            bars[i].style.height = `${Math.max(barHeight, 2)}%`;
+            // Maintain a 8% minimum height so bars don't disappear
+            bars[i].style.height = `${Math.max(barHeight, 8)}%`;
         }
     }
 
