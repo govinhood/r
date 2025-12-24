@@ -98,7 +98,7 @@ body {
 
 #station-art { width: 100%; max-width: 240px; border-radius: 25px; transition: 0.3s; }
 .image-container { position: relative; display: inline-block; width: 100%; }
-.live-badge { position: absolute; top: 15px; right: 15px; background: #ef4444; color: white; padding: 4px 12px; border-radius: 6px; font-size: 0.7rem; font-weight: bold; animation: pulse 2s infinite; z-index: 5;}
+.live-badge { position: absolute; top: 100px; right: 5px; background: #ef4444; color: white; padding: 4px 12px; border-radius: 6px; font-size: 0.7rem; font-weight: bold; animation: pulse 2s infinite; z-index: 5;}
 
 @keyframes pulse { 50% { opacity: 0.5; } }
 .timer { margin: 1.5rem 0; font-family: 'Courier New', monospace; font-size: 2.4rem; color: var(--accent); }
