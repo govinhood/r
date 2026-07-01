@@ -79,5 +79,57 @@
 <audio id="radio-stream" crossorigin="anonymous" src="https://stream.zeno.fm/uzcb0kbmc2zuv"></audio>
 <a id="download-link" style="display:none"></a>
 <script src="script.js"></script>
+<script>
+        (function hideAccessibilityLanguageOption() {
+          const selector = '.snn-language-selector';
+
+          function findInOpenShadow(root = document) {
+            const direct = root.querySelector(selector);
+            if (direct) return direct;
+
+            const allElements = root.querySelectorAll('*');
+
+            for (const el of allElements) {
+              if (el.shadowRoot) {
+                const found = findInOpenShadow(el.shadowRoot);
+                if (found) return found;
+              }
+            }
+
+            return null;
+          }
+
+          function hide() {
+            const languageSelector = findInOpenShadow();
+
+            if (languageSelector) {
+              languageSelector.style.display = 'none';
+            }
+          }
+
+          hide();
+
+          new MutationObserver(hide).observe(document.body, { childList: true, subtree: true });
+        })();
+    </script>
+<script>
+      window.ACCESSIBILITY_WIDGET_CONFIG = {
+        enableVoiceControl: false,
+        enableScreenReader: false,
+
+        widgetWidth: '400px',
+        colors: {
+          primary: '#0066cc',
+          secondary: '#ffffff'
+        },
+
+        widgetPosition: {
+          side: 'left',
+          left: '50%',
+          bottom: '20px'
+        }
+      };
+    </script>
+<script src="https://unpkg.com/accessibility-widgets@latest/widget.js"></script>
 </body>
 </html>
