@@ -7,8 +7,20 @@
     <title id="tab-title">Govinhood FM</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2196F3">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
 </head>
 <body class="dark-theme">
+
+<!-- PWA -->
+    <button id="installBtn" style="display:none;position:fixed;bottom:20px;right:20px;padding:12px 20px;border:none;border-radius:8px;background:#2196F3;color:#fff;font-size:16px;cursor:pointer;z-index:9999;">
+📲 Install App
+</button>
 
 <div class="spectrum-container" id="spectrum"></div>
 
@@ -131,5 +143,28 @@
       };
     </script>
 <script src="https://unpkg.com/accessibility-widgets@latest/widget.js"></script>
+
+<!-- PWA -->
+<script>
+let deferredPrompt;
+const installBtn = document.getElementById("installBtn");
+
+window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = "block";
+});
+
+installBtn.addEventListener("click", async () => {
+    installBtn.style.display = "none";
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+});
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js');
+}
+</script>
 </body>
 </html>
