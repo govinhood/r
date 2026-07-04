@@ -22,6 +22,40 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+.logo-area{
+    display:flex;
+    align-items:center;      /* Vertically centers logo and button */
+    gap:12px;
+}
+
+.nav-icon.logo-img{
+    width:200px;
+    height:42px;
+    object-fit:contain;
+    flex-shrink:0;
+}
+
+.brand-link{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:42px;             /* Same height as logo */
+    padding:0 16px;
+    border-radius:25px;
+    background:#0066cc;
+    color:#fff;
+    text-decoration:none;
+    font-weight:600;
+    line-height:1;
+    transition:.3s;
+    white-space:nowrap;
+}
+
+.brand-link:hover{
+    background:#2196F3;
+    transform:translateY(-1px);
+}
+
 body {
     font-family: 'Segoe UI', system-ui, sans-serif;
     background-color: var(--bg-color);
